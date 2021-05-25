@@ -1,0 +1,7 @@
+name: Base
+version: @version@
+main: net.gigaclub.base.Main
+api-version: 1.16
+authors: [ KevTVKevin ]
+description: A Base Plugin for Minecraft
+website: https://GigaClub.net
