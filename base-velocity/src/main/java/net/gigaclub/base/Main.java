@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 @Plugin(
         id = "base-velocity",
         name = "Base",
-        version = "@version@",
+        version = "1.16.5.1.0.0",
         description = "A Base Plugin for Minecraft",
         url = "https://GigaClub.net",
         authors = {"KevTVKevin"}
