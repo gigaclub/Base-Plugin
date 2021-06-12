@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 
 public class Odoo {
 
@@ -63,18 +63,92 @@ public class Odoo {
         return common_config;
     }
 
-    public List<Object> getDemo() {
+    public int getPlayer(String playerUUID) {
         try {
-            return Arrays.asList((Object[])this.models.execute("execute_kw", Arrays.asList(
+            return (int) Arrays.asList((Object[])this.models.execute("execute_kw", Arrays.asList(
                     this.database, this.uid, this.password,
-                    "res.partner", "search",
+                    "gc.user", "search",
                     Arrays.asList(Arrays.asList(
-                            Arrays.asList("is_company", "=", true)))
-            )));
+                            Arrays.asList("mc_uuid", "=", playerUUID))),
+                    new HashMap() {{ put("limit", 1); }}
+            ))).get(0);
         } catch (XmlRpcException e) {
             e.printStackTrace();
         }
-        return new ArrayList<>();
+        return 0;
+    }
+
+    public boolean checkIfPlayerExists(String playerUUID) {
+        try {
+            return ((int)this.models.execute("execute_kw", Arrays.asList(
+                    this.database, this.uid, this.password,
+                    "gc.user", "search_count",
+                    Arrays.asList(Arrays.asList(
+                            Arrays.asList("mc_uuid", "=", playerUUID)))
+            )) > 0);
+        } catch (XmlRpcException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean createPlayer(String name, String playerUUID) {
+        try {
+            return ((int)this.models.execute("execute_kw", Arrays.asList(
+                    this.database, this.uid, this.password,
+                    "gc.user", "create",
+                    Arrays.asList(new HashMap() {{ put("name", name); put("mc_uuid", playerUUID); }})
+            )) > 0);
+        } catch (XmlRpcException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean checkName(String name, String playerUUID) {
+        try {
+            return ((int)this.models.execute("execute_kw", Arrays.asList(
+                    this.database, this.uid, this.password,
+                    "gc.user", "search_count",
+                    Arrays.asList(Arrays.asList(
+                            Arrays.asList("name", "=", name), Arrays.asList("mc_uuid", "=", playerUUID)))
+            )) > 0);
+        } catch (XmlRpcException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean updateName(String name, String playerUUID) {
+        try {
+            this.models.execute("execute_kw", Arrays.asList(
+                    this.database, this.uid, this.password,
+                    "gc.user", "write",
+                    Arrays.asList(
+                            Arrays.asList(this.getPlayer(playerUUID)),
+                            new HashMap() {{ put("name", name); }}
+                    )
+            ));
+        } catch (XmlRpcException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean updateStatus(String playerUUID, String status) {
+        try {
+            return (boolean) this.models.execute("execute_kw", Arrays.asList(
+                    this.database, this.uid, this.password,
+                    "gc.user", "write",
+                    Arrays.asList(
+                            Arrays.asList(this.getPlayer(playerUUID)),
+                            new HashMap() {{ put("state", status); }}
+                    )
+            ));
+        } catch (XmlRpcException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
