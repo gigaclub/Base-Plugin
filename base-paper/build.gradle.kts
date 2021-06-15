@@ -16,6 +16,14 @@ repositories {
         name = "sonatype"
         url = uri("https://oss.sonatype.org/content/groups/public/")
     }
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/gigaclub/baseapi")
+        metadataSources {
+            mavenPom()
+            artifact()
+        }
+    }
 }
 
 dependencies {
@@ -31,13 +39,6 @@ tasks {
             filter(ReplaceTokens::class, mapOf("tokens" to tokens))
             duplicatesStrategy = DuplicatesStrategy.INCLUDE
         }
-    }
-
-    task<Copy>("installPlugin") {
-        dependsOn(jar)
-        from(jar)
-        include("*.jar")
-        into(spigotPluginsDir ?: error("Please set spigotPluginsDir in gradle.properties"))
     }
 
     build {

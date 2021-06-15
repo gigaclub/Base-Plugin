@@ -12,7 +12,7 @@ public class OnLeave implements Listener {
     public void onPlayerLeave(PlayerQuitEvent e) {
         Player player = e.getPlayer();
         String playerUUID = player.getUniqueId().toString();
-        Main.getOdoo().updateStatus(playerUUID, "offline");
+        Main.getData().updateStatus(playerUUID, "offline");
     }
 
 }

@@ -19,7 +19,14 @@ repositories {
         name = "spongepowered-repo"
         url = uri("https://repo.spongepowered.org/maven")
     }
-}
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/gigaclub/baseapi")
+        metadataSources {
+            mavenPom()
+            artifact()
+        }
+    }}
 
 dependencies {
     implementation(project(":base-common"))

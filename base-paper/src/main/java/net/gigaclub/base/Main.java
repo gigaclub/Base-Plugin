@@ -2,17 +2,18 @@ package net.gigaclub.base;
 
 import net.gigaclub.base.config.Config;
 import net.gigaclub.base.config.OdooConfig;
-import net.gigaclub.base.data.Odoo;
+import net.gigaclub.base.data.Data;
 import net.gigaclub.base.listener.OnJoin;
 import net.gigaclub.base.listener.OnLeave;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
     private static Main plugin;
-    private static Odoo odoo;
+    private static Data data;
     final public static String PREFIX = "[GC]: ";
 
     @Override
@@ -21,7 +22,7 @@ public final class Main extends JavaPlugin {
         setPlugin(this);
         setConfig();
         FileConfiguration config = getConfig();
-        setOdoo(new Odoo(
+        setData(new Data(
                 config.getString("Base.Odoo.Host"),
                 config.getString("Base.Odoo.Database"),
                 config.getString("Base.Odoo.Username"),
@@ -32,7 +33,9 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        for(Player p : this.getServer().getOnlinePlayers()) {
+            Main.getData().updateStatus(p.getUniqueId().toString(), "offline");
+        }
     }
 
     public static Main getPlugin() {
@@ -43,12 +46,12 @@ public final class Main extends JavaPlugin {
         Main.plugin = plugin;
     }
 
-    public static Odoo getOdoo() {
-        return odoo;
+    public static Data getData() {
+        return data;
     }
 
-    public static void setOdoo(Odoo odoo) {
-        Main.odoo = odoo;
+    public static void setData(Data data) {
+        Main.data = data;
     }
 
     private void setConfig() {

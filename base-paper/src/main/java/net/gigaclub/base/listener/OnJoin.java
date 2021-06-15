@@ -13,14 +13,14 @@ public class OnJoin implements Listener {
         Player player = event.getPlayer();
         String playerUUID = player.getUniqueId().toString();
         String playerName = player.getName();
-        if (Main.getOdoo().checkIfPlayerExists(playerUUID)) {
-            if (Main.getOdoo().checkName(playerName, playerUUID)) {
-                Main.getOdoo().updateName(playerName, playerUUID);
+        if (Main.getData().checkIfPlayerExists(playerUUID)) {
+            if (Main.getData().checkName(playerName, playerUUID)) {
+                Main.getData().updateName(playerName, playerUUID);
             }
         } else {
-            Main.getOdoo().createPlayer(playerName, playerUUID);
+            Main.getData().createPlayer(playerName, playerUUID);
         }
-        Main.getOdoo().updateStatus(playerUUID, "online");
+        Main.getData().updateStatus(playerUUID, "online");
     }
 
 }
