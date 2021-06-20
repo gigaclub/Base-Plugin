@@ -30,8 +30,8 @@ repositories {
 
 dependencies {
     implementation(project(":base-common"))
-    compileOnly("com.velocitypowered:velocity-api:1.1.0")
-    annotationProcessor("com.velocitypowered:velocity-api:1.1.0")
+    compileOnly("com.velocitypowered:velocity-api:1.1.8")
+    annotationProcessor("com.velocitypowered:velocity-api:1.1.8")
 }
 
 tasks {

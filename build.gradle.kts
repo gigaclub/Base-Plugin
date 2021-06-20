@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "net.gigaclub"
-version = "1.16.5.1.0.0"
+version = "1.17.1.0.0"
 
 subprojects {
     apply(plugin="java")
@@ -13,7 +13,7 @@ subprojects {
     version = project.version
 
     configure<JavaPluginConvention> {
-        sourceCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_16
     }
 
     repositories {
