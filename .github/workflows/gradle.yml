@@ -27,7 +27,6 @@ jobs:
       shell: bash
       run: |
         mkdir -p ~/.gradle/
-        echo "::set-env name=GRADLE_USER_HOME::$HOME/.gradle"
         echo ${GRADLE_PROPERTIES} > ~/.gradle/gradle.properties
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
