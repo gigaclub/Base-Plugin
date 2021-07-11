@@ -3,6 +3,7 @@ package net.gigaclub.base.data;
 import net.gigaclub.base.odoo.Odoo;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class Data {
 
@@ -13,15 +14,19 @@ public class Data {
     }
 
     public int getPlayer(String playerUUID) {
-        return (int) this.odoo.search(
-            "gc.user",
-            Arrays.asList(
+        List players = this.odoo.search(
+                "gc.user",
                 Arrays.asList(
-                    Arrays.asList("mc_uuid", "=", playerUUID)
-                )
-            ),
-            new HashMap() {{ put("limit", 1); }}
-        ).get(0);
+                        Arrays.asList(
+                                Arrays.asList("mc_uuid", "=", playerUUID)
+                        )
+                ),
+                new HashMap() {{ put("limit", 1); }}
+        );
+        if (players.size() > 0) {
+            return (int) players.get(0);
+        }
+        return 0;
     }
 
     public boolean checkIfPlayerExists(String playerUUID) {
