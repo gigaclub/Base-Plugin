@@ -19,6 +19,11 @@ jobs:
     - name: Set up JDK 11
       env:
         GRADLE_PROPERTIES: ${{ secrets.GRADLE_PROPERTIES }}
+      shell: bash
+      run: |
+        mkdir -p ~/.gradle/
+        echo "::set-env name=GRADLE_USER_HOME::$HOME/.gradle"
+        echo ${GRADLE_PROPERTIES} > ~/.gradle/gradle.properties
       uses: actions/setup-java@v2
       with:
         java-version: '11'
