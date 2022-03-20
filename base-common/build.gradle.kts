@@ -23,5 +23,5 @@ repositories {
 }
 
 dependencies {
-    api("net.gigaclub:baseapi:14.0.1.0.1")
+    api("net.gigaclub:baseapi:14.0.1.0.2")
 }
