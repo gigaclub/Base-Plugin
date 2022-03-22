@@ -61,7 +61,7 @@ public final class Main extends JavaPlugin {
 
         Config.save();
 
-        System.out.println(PREFIX + "Config files set.");
+        getLogger().info(PREFIX + "Config files set.");
     }
 
     private void registerEvents() {
