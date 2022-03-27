@@ -7,8 +7,11 @@ import net.gigaclub.base.listener.OnJoin;
 import net.gigaclub.base.listener.OnLeave;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
 
 public final class Main extends JavaPlugin {
 
@@ -21,12 +24,14 @@ public final class Main extends JavaPlugin {
         // Plugin startup logic
         setPlugin(this);
         setConfig();
-        FileConfiguration config = getConfig();
+
+        File file = new File("plugins//" + "Odoo", "config.yml");
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         setData(new Data(
-                config.getString("Base.Odoo.Host"),
-                config.getString("Base.Odoo.Database"),
-                config.getString("Base.Odoo.Username"),
-                config.getString("Base.Odoo.Password")
+                config.getString("Odoo.Host"),
+                config.getString("Odoo.Database"),
+                config.getString("Odoo.Username"),
+                config.getString("Odoo.Password")
         ));
         registerEvents();
     }

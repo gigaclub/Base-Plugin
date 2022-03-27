@@ -8,10 +8,10 @@ public class OdooConfig {
 
         FileConfiguration config = Config.getConfig();
 
-        config.addDefault("Base.Odoo.Host", "http://localhost:14069");
-        config.addDefault("Base.Odoo.Database", "devel");
-        config.addDefault("Base.Odoo.Username", "admin");
-        config.addDefault("Base.Odoo.Password", "admin");
+        config.addDefault("Odoo.Host", "http://localhost:14069");
+        config.addDefault("Odoo.Database", "devel");
+        config.addDefault("Odoo.Username", "admin");
+        config.addDefault("Odoo.Password", "admin");
 
         Config.save();
 
