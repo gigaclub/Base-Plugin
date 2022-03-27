@@ -17,7 +17,7 @@ public class Config {
     }
 
     public static void createConfig() {
-        Config.configFile = new File("plugins//" + Main.getPlugin().getDescription().getName(), "config.yml");
+        Config.configFile = new File("plugins//" + "Odoo", "config.yml");
         Config.config = YamlConfiguration.loadConfiguration(configFile);
         Config.config.options().copyDefaults(true);
         Config.save();
