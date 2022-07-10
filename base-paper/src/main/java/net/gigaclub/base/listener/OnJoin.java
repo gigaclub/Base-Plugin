@@ -1,6 +1,6 @@
 package net.gigaclub.base.listener;
 
-import net.gigaclub.base.Main;
+import net.gigaclub.base.Base;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,14 +13,14 @@ public class OnJoin implements Listener {
         Player player = event.getPlayer();
         String playerUUID = player.getUniqueId().toString();
         String playerName = player.getName();
-        if (Main.getData().checkIfPlayerExists(playerUUID)) {
-            if (Main.getData().checkName(playerName, playerUUID)) {
-                Main.getData().updateName(playerName, playerUUID);
+        if (Base.getData().checkIfPlayerExists(playerUUID)) {
+            if (Base.getData().checkName(playerName, playerUUID)) {
+                Base.getData().updateName(playerName, playerUUID);
             }
         } else {
-            Main.getData().createPlayer(playerName, playerUUID);
+            Base.getData().createPlayer(playerName, playerUUID);
         }
-        Main.getData().updateStatus(playerUUID, "online");
+        Base.getData().updateStatus(playerUUID, "online");
     }
 
 }

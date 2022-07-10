@@ -29,7 +29,7 @@ repositories {
 
 dependencies {
     implementation(project(":base-common"))
-    compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
+    compileOnly("io.github.waterfallmc:waterfall-api:1.19-R0.1-SNAPSHOT")
 }
 
 tasks {

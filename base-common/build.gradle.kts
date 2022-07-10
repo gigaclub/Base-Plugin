@@ -5,7 +5,6 @@ plugins {
 val GITHUB_PACKAGES_USERID: String by project
 val GITHUB_PACKAGES_IMPORT_TOKEN: String by project
 
-
 repositories {
     mavenCentral()
     maven {

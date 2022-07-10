@@ -1,6 +1,5 @@
 package net.gigaclub.base.config;
 
-import net.gigaclub.base.Main;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 

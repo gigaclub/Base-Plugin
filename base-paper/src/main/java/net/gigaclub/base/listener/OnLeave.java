@@ -1,6 +1,6 @@
 package net.gigaclub.base.listener;
 
-import net.gigaclub.base.Main;
+import net.gigaclub.base.Base;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,7 +12,7 @@ public class OnLeave implements Listener {
     public void onPlayerLeave(PlayerQuitEvent e) {
         Player player = e.getPlayer();
         String playerUUID = player.getUniqueId().toString();
-        Main.getData().updateStatus(playerUUID, "offline");
+        Base.getData().updateStatus(playerUUID, "offline");
     }
 
 }

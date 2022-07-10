@@ -4,10 +4,10 @@ plugins {
 }
 
 group = "net.gigaclub"
-version = "1.18.2.1.0.0"
+version = "1.19.0.1.0.0"
 
 subprojects {
-    apply(plugin="java")
+    apply(plugin = "java")
 
     group = project.group
     version = project.version

@@ -13,11 +13,26 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
-public final class Main extends JavaPlugin {
+public final class Base extends JavaPlugin {
 
-    private static Main plugin;
+    private static Base plugin;
     private static Data data;
-    final public static String PREFIX = "[GC]: ";
+
+    public static Base getPlugin() {
+        return plugin;
+    }
+
+    private static void setPlugin(Base plugin) {
+        Base.plugin = plugin;
+    }
+
+    public static Data getData() {
+        return data;
+    }
+
+    public static void setData(Data data) {
+        Base.data = data;
+    }
 
     @Override
     public void onEnable() {
@@ -38,42 +53,20 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        for(Player p : this.getServer().getOnlinePlayers()) {
-            Main.getData().updateStatus(p.getUniqueId().toString(), "offline");
+        for (Player p : this.getServer().getOnlinePlayers()) {
+            Base.getData().updateStatus(p.getUniqueId().toString(), "offline");
         }
-    }
-
-    public static Main getPlugin() {
-        return plugin;
-    }
-
-    private static void setPlugin(Main plugin) {
-        Main.plugin = plugin;
-    }
-
-    public static Data getData() {
-        return data;
-    }
-
-    public static void setData(Data data) {
-        Main.data = data;
     }
 
     private void setConfig() {
         Config.createConfig();
-
         OdooConfig.setOdooConfig();
-
         Config.save();
-
-        getLogger().info(PREFIX + "Config files set.");
+        getLogger().info("Config files set.");
     }
 
     private void registerEvents() {
-
         Bukkit.getPluginManager().registerEvents(new OnJoin(), getPlugin());
         Bukkit.getPluginManager().registerEvents(new OnLeave(), getPlugin());
-
     }
-
 }

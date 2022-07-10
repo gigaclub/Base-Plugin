@@ -1,7 +1,9 @@
 name: Base
-version: 1.18.2.1.0.0
-main: net.gigaclub.base.Main
-api-version: 1.18
-authors: [ KevTVKevin ]
+version: 1.19.0.1.0.0
+main: net.gigaclub.base.Base
+api-version: 1.19
+prefix: Base
+load: POSTWORLD
+authors: [ GigaClub ]
 description: A Base Plugin for Minecraft
-website: https://GigaClub.net
+website: https://github.com/GigaClub
